@@ -1,16 +1,9 @@
-import {
-  Button,
-  Container,
-  FormControl,
-  Grid,
-  MenuItem,
-  Select,
-  TextField,
-  Typography,
-  Skeleton,
-} from "@mui/material";
+import { Container, Grid, Skeleton } from "@mui/material";
 import { useState } from "react";
 import Background from "./background.webp";
+import Form from "./component/Form";
+import Header from "./component/Header";
+import Footer from "./component/Footer";
 
 const OPENAI_API_KEY = "";
 
@@ -79,77 +72,12 @@ function App() {
         }}
       >
         <Container maxWidth="md">
-          <Grid item xs={12} mt={12}>
-            <Typography
-              variant="h4"
-              component="h2"
-              sx={{ fontWeight: 800, textAlign: "center", color: "white" }}
-            >
-              AI Image Generator Tool
-            </Typography>
-            <Typography
-              variant="h6"
-              sx={{ textAlign: "center", color: "white" }}
-              mt={2}
-            >
-              Convert your text into an image within a second using this Tool.
-            </Typography>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            mt={6}
-            mb={12}
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              background: "#fff",
-              padding: "10px",
-              borderRadius: "50px",
-            }}
-          >
-            <TextField
-              variant="standard"
-              value={inputData.prompt}
-              name="prompt"
-              placeholder="Describe what you want to see"
-              onChange={handleChange}
-              sx={{ marginX: "10px" }}
-              fullWidth
-            />
-            <FormControl
-              sx={{ minWidth: 150, marginX: "10px" }}
-              variant="standard"
-            >
-              <Select
-                onChange={handleChange}
-                name="n_image"
-                value={inputData.n_image}
-              >
-                <MenuItem value={1}>1 Image</MenuItem>
-                <MenuItem value={2}>2 Images</MenuItem>
-                <MenuItem value={3}>3 Images</MenuItem>
-                <MenuItem value={4}>4 Images</MenuItem>
-              </Select>
-            </FormControl>
-            <Button
-              variant="contained"
-              onClick={handleSubmit}
-              sx={{
-                paddingX: "40px",
-                marginX: "10px",
-                fontSize: "1rem",
-                fontWeight: "500",
-                outline: "none",
-                background: "#4949E7",
-                color: "white",
-                borderRadius: "30px",
-                cursor: "pointer",
-              }}
-            >
-              Generate
-            </Button>
-          </Grid>
+          <Header />
+          <Form
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            inputData={inputData}
+          />
         </Container>
       </Grid>
       <Container maxWidth="lg">
@@ -182,14 +110,7 @@ function App() {
               ))
             : ""}
         </Grid>
-        <Grid container>
-          <Grid item xs={12}>
-            <Typography sx={{ textAlign: "center", padding: "20px" }}>
-              Copyright © {new Date().getFullYear()} Kairav Patel. All rights
-              reserved.
-            </Typography>
-          </Grid>
-        </Grid>
+        <Footer />
       </Container>
     </>
   );
